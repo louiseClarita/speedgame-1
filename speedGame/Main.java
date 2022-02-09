@@ -7,8 +7,10 @@ import javafx.scene.layout.*;
 
 
 public class Main extends Application {
+	public static Stage primaryStage;
 	@Override
 	public void start(Stage primaryStage) {
+		this.primaryStage = primaryStage;
 		BorderPane rootPane = new BorderPane();
 		
 		
@@ -16,9 +18,9 @@ public class Main extends Application {
 		rootPane.setCenter(gamePanel);
 		
 		 
-		Scene scene = new Scene(rootPane,600,600);
+		Scene scene = new Scene(rootPane,800,800);
 		
-		
+		System.out.println("entered main");
 		primaryStage.setTitle("Speed Game"); 
 		primaryStage.setScene(scene); 
 		primaryStage.show(); 
@@ -28,7 +30,19 @@ public class Main extends Application {
 	public static void main(String[] args) {
 		launch(args);
 	}
+	public Scene getScene() {
 	
+	BorderPane rootPane = new BorderPane();
+	
+	
+	GamePanel gamePanel = new GamePanel();
+	rootPane.setCenter(gamePanel);
+	
+	 
+	Scene scene = new Scene(rootPane,800,800);
+	
+	return scene;
+	}
 	
 }
 
