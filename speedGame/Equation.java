@@ -19,14 +19,29 @@ public class Equation extends Pane {
 	private Integer finalValue;
 	private String equation;
 	private Color color = GameSettings.equationColor;
-	
+	public Integer picker = 0;
 	public Equation() {
 		setColor();
 		setFirstValue();
 		setSecondValue();
-		setSumEquation(); 
+		// random equation type
+		Random random = new Random();
+		picker = random.nextInt(2)+1;
+		
+		if (picker == 1) {
+			setSoustractionEquation();
+			setFinalValue(minus(getFirstValue(),getSecondValue()));
+		}else if(picker == 2) {
+			setSumEquation();
+			setFinalValue(sum(getFirstValue(),getSecondValue()));
+		}//else if(picker == 3) {
+		//setDivEquation();
+		//}else if(picker == 4) {
+		//	setMultEquation();
+		//}
+		
 	}
-	
+
 	public Integer getFirstValue() {
 		return firstValue;
 	}
@@ -43,6 +58,7 @@ public class Equation extends Pane {
 		Integer secondValue = randomNumber.nextInt(GameSettings.upperBoundRandomNumber);
 		this.secondValue = secondValue;
 	}
+	
 	public Integer getFinalValue() {
 		return finalValue;
 	}
@@ -50,13 +66,23 @@ public class Equation extends Pane {
 		this.finalValue = finalValue;
 	}
 	
+	
+	
 	public String getEquation() {
 		return equation;
 	}
+	
+	
+	// setting type of equation for text
 	public void setSumEquation() {
 		this.equation = this.firstValue.toString() + " + " +  this.secondValue.toString();
 			
 	}
+	public void setSoustractionEquation() {
+		this.equation = this.firstValue.toString() + " - " +  this.secondValue.toString();
+			
+	}
+
 	
 	public Color getColor() {
 		return color;
@@ -85,10 +111,7 @@ public class Equation extends Pane {
 	public Integer sum(Integer firstInteger,Integer secondInteger) {
 		return firstInteger+secondInteger;
 	}
-	
-	public Integer product(Integer firstInteger,Integer secondInteger) {
-		return firstInteger*secondInteger;
-	}
+
 	public Integer minus(Integer firstInteger,Integer secondInteger) {
 		
 		return Math.abs(firstInteger-secondInteger);
